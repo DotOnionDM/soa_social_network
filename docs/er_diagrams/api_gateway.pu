@@ -1,0 +1,35 @@
+@startuml "API Gateway Service ER Diagram"
+' Таблица для регистрации входящих запросов (6 атрибутов)
+entity "RequestLog" as RL {
+  *id : int
+  ui_source : string
+  endpoint  : string
+  method    : string
+  payload   : text
+  timestamp : datetime
+}
+
+' Таблица для регистрации ответов (6 атрибутов)
+entity "ResponseLog" as RPL {
+  *id : int
+  request_id : int
+  status_code : int
+  response_body : text
+  timestamp  : datetime
+  execution_time : float
+}
+
+' Таблица для регистрации ошибок (6 атрибутов)
+entity "ErrorLog" as EL {
+  *id : int
+  request_id : int
+  error_code : string
+  error_message : text
+  occurred_at : datetime
+  severity : string
+}
+
+' Пример связи: один запрос логгирует свой ответ и возможную ошибку
+RL ||--|| RPL : "создает"
+RL ||--|| EL : "генерирует"
+@enduml

@@ -1,0 +1,39 @@
+@startuml "Posts and Comments Service ER Diagram"
+' Таблица постов (6 атрибутов)
+entity "Post" as P {
+  *post_id : int
+  user_id : int
+  title : string
+  content : text
+  created_at : datetime
+  updated_at : datetime
+}
+
+' Таблица комментариев (6 атрибутов)
+entity "Comment" as C {
+  *comment_id : int
+  post_id : int
+  user_id : int
+  content : text
+  created_at : datetime
+  updated_at : datetime
+}
+
+' Таблица тегов (6 атрибутов)
+entity "Tag" as T {
+  *tag_id : int
+  name : string
+  description : text
+  created_at : datetime
+  updated_at : datetime
+  usage_count : int
+}
+
+' Связи:
+' Один пост может иметь множество комментариев
+P ||--o{ C : "содержит"
+' Отношение многие-ко-многим между постами и тегами:
+' Для этой связи обычно создаётся дополнительная таблица, однако здесь Tag выступает как сущность,
+' а связь может быть реализована через join-таблицу, которую опускаем для простоты.
+P }o--o{ T : "тегируется"
+@enduml
