@@ -1,0 +1,21 @@
+specification {
+    element user {
+        style {
+            shape person
+            color gray
+        }
+    }
+    element system {
+        style {
+            shape browser
+            color blue
+        }
+    }
+    element container {
+        style {
+            shape rectangle
+            color indigo
+        }
+    }
+    element component
+}
