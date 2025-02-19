@@ -32,6 +32,7 @@ model {
             technology "Python, FastAPI"
 
             component activitiesController "Activities Controller" "Обрабатывает HTTP запросы"
+            component grpcService "gRPC Service" "Предоставляет gRPC API"
             component kafkaProducer "Kafka Producer" "Отправляет комментарии, лайки и т.п"
         }
 
@@ -77,6 +78,7 @@ model {
 
     socialNetwork.activitiesService -> socialNetwork.kafka "Публикует" "user_events"
     socialNetwork.activitiesService -> socialNetwork.postgresDbPosts "Читает/Пишет" "SQL"
+    socialNetwork.activitiesService -> socialNetwork.userService "Взаимодействует" "gRPC API"
 
     socialNetwork.statsService -> socialNetwork.kafka "Подписывается" "user_events"
     socialNetwork.statsService -> socialNetwork.clickhouseDb "Читает/Пишет" "SQL"

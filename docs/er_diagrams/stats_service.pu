@@ -1,5 +1,4 @@
 @startuml "Statistics Service ER Diagram"
-' Статистика по постам (6 атрибутов)
 entity "PostStats" as PS {
   *stat_id : int
   post_id : int
@@ -9,7 +8,6 @@ entity "PostStats" as PS {
   updated_at : datetime
 }
 
-' Статистика по комментариям (6 атрибутов)
 entity "CommentStats" as CS {
   *stat_id : int
   comment_id : int
@@ -19,7 +17,6 @@ entity "CommentStats" as CS {
   updated_at : datetime
 }
 
-' Статистика лайков для любых сущностей (пост/комментарий) (6 атрибутов)
 entity "LikeStats" as LS {
   *stat_id : int
   target_id : int

@@ -1,5 +1,4 @@
 @startuml "Users Service ER Diagram"
-' Таблица пользователей с 6 атрибутами
 entity "User" as U {
   *user_id : int
   username : string
@@ -9,7 +8,6 @@ entity "User" as U {
   role_id : int
 }
 
-' Таблица ролей – не просто связующая, поэтому добавлено больше атрибутов (5 атрибутов)
 entity "Role" as R {
   *role_id : int
   role_name : string
@@ -18,7 +16,6 @@ entity "Role" as R {
   updated_at : datetime
 }
 
-' Таблица сессий пользователей (6 атрибутов)
 entity "Session" as S {
   *session_id : int
   user_id : int
@@ -28,7 +25,6 @@ entity "Session" as S {
   expire_at : datetime
 }
 
-' Связи: Пользователь имеет одну роль, и может генерировать множество сессий
 U --> R : "принадлежит"
 U ||--o{ S : "создает"
 @enduml
