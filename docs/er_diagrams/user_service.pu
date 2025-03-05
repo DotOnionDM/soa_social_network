@@ -1,0 +1,30 @@
+@startuml "Users Service ER Diagram"
+entity "User" as U {
+  *user_id : int
+  username : string
+  password_hash : string
+  email : string
+  created_at : datetime
+  role_id : int
+}
+
+entity "Role" as R {
+  *role_id : int
+  role_name : string
+  description : string
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "Session" as S {
+  *session_id : int
+  user_id : int
+  token : string
+  created_at : datetime
+  last_active : datetime
+  expire_at : datetime
+}
+
+U --> R : "принадлежит"
+U ||--o{ S : "создает"
+@enduml

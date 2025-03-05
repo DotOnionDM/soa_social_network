@@ -1,0 +1,31 @@
+@startuml "API Gateway Service ER Diagram"
+entity "RequestLog" as RL {
+  *id : int
+  ui_source : string
+  endpoint  : string
+  method    : string
+  payload   : text
+  timestamp : datetime
+}
+
+entity "ResponseLog" as RPL {
+  *id : int
+  request_id : int
+  status_code : int
+  response_body : text
+  timestamp  : datetime
+  execution_time : float
+}
+
+entity "ErrorLog" as EL {
+  *id : int
+  request_id : int
+  error_code : string
+  error_message : text
+  occurred_at : datetime
+  severity : string
+}
+
+RL ||--|| RPL : "создает"
+RL ||--|| EL : "генерирует"
+@enduml

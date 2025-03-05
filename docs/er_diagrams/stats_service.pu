@@ -1,0 +1,28 @@
+@startuml "Statistics Service ER Diagram"
+entity "PostStats" as PS {
+  *stat_id : int
+  post_id : int
+  likes_count : int
+  views_count : int
+  comments_count : int
+  updated_at : datetime
+}
+
+entity "CommentStats" as CS {
+  *stat_id : int
+  comment_id : int
+  likes_count : int
+  dislikes_count : int
+  flagged_count : int
+  updated_at : datetime
+}
+
+entity "LikeStats" as LS {
+  *stat_id : int
+  target_id : int
+  user_id : int
+  target_type : string
+  created_at : datetime
+  is_valid : boolean
+}
+@enduml
