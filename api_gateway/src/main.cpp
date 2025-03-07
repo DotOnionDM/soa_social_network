@@ -1,13 +1,10 @@
-#include <drogon/drogon.h>
+#include "server/server.h"
 
-int main() {
-    drogon::app().registerHandler("/", [](const drogon::HttpRequestPtr &req, std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
-        auto resp = drogon::HttpResponse::newHttpResponse();
-        resp->setBody("Hello from Drogon server!");
-        callback(resp);
-    });
-
-    drogon::app().addListener("0.0.0.0", 8080)
-                 .run();
-    return 0;
+int main(int argc, char **argv) {
+  if (argc < 2) {
+    throw std::runtime_error("Http user service host should be specified!");
+  }
+  Server server(argv[1], "", "");
+  server.start();
+  return 0;
 }

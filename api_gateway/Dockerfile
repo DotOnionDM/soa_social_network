@@ -27,14 +27,14 @@ RUN git clone https://github.com/drogonframework/drogon.git && \
     make install && \
     ldconfig
 
-WORKDIR /app
-
 COPY . app
 
-RUN cd app && mkdir -p build && cd build && \
+WORKDIR /app
+
+RUN mkdir -p build && cd build && \
     cmake .. && \
     make
 
 EXPOSE 8080
 
-CMD [ "./app/build/app" ]
+CMD [ "./build/app", "http://user_service:8081" ]

@@ -1,1 +1,20 @@
+services:
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user_service
+    networks:
+      - microservices-net
 
+  user_service:
+    build: ./user_service
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge
