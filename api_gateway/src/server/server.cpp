@@ -57,7 +57,7 @@ void Server::start() {
       });
 
   app().registerHandler(
-      "/v1/users/{path}",
+      "/v1/{path}",
       [this](const HttpRequestPtr &req,
              std::function<void(const HttpResponsePtr &)> &&callback,
              const std::string &path) {

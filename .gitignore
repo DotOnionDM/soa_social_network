@@ -3,3 +3,4 @@
 *.vscode*
 *venv*
 *drogon*
+*__pycache__
