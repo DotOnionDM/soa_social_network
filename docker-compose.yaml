@@ -7,6 +7,7 @@ services:
       - user_service
     networks:
       - microservices-net
+      - user_service-net
 
   user_service:
     build: ./user_service
@@ -14,7 +15,46 @@ services:
       - "8081:8081"
     networks:
       - microservices-net
+  
+  postgres_db_users:
+    image: postgres:latest
+    container_name: postgres_db_users
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER_USER_SERVICE}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_USER_SERVICE}
+      POSTGRES_DB: ${POSTGRES_DB_USER_SERVICE}
+      PGDATA: ${PGDATA_USER_SERVICE}
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./user_service/pgdata:${PGDATA_USER_SERVICE}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    command: >
+      postgres -c max_connections=1000
+               -c shared_buffers=256MB
+               -c effective_cache_size=768MB
+               -c maintenance_work_mem=64MB
+               -c checkpoint_completion_target=0.7
+               -c wal_buffers=16MB
+               -c default_statistics_target=100
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres_user -d postgres_db" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
 
 networks:
   microservices-net:
+    driver: bridge
+  user_service-net:
     driver: bridge
