@@ -2,13 +2,13 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from app.models.error_response import ErrorResponse
-from app.models.user_profile_response import UserProfileResponse
-from app.models.user_profile_update import UserProfileUpdate
-from app.models.user_registration import UserRegistration
-from app.models.v1_login_post200_response import V1LoginPost200Response
-from app.models.v1_login_post_request import V1LoginPostRequest
-from app.security_api import get_token_bearerAuth
+from user_service_base.models.error_response import ErrorResponse
+from user_service_base.models.user_profile_response import UserProfileResponse
+from user_service_base.models.user_profile_update import UserProfileUpdate
+from user_service_base.models.user_registration import UserRegistration
+from user_service_base.models.v1_login_post200_response import V1LoginPost200Response
+from user_service_base.models.v1_login_post_request import V1LoginPostRequest
+from user_service_base.security_api import get_token_bearerAuth
 
 class BaseDefaultApi:
     subclasses: ClassVar[Tuple] = ()

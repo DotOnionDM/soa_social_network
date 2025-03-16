@@ -14,7 +14,7 @@
 
 from fastapi import FastAPI
 
-from app.apis.default_api import router as DefaultApiRouter
+from user_service_base.apis.default_api import router as DefaultApiRouter
 
 app = FastAPI(
     title="User Service API",

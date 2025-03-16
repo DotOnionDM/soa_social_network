@@ -3,12 +3,12 @@
 from fastapi.testclient import TestClient
 
 
-from src.app.models.error_response import ErrorResponse  # noqa: F401
-from src.app.models.user_profile_response import UserProfileResponse  # noqa: F401
-from src.app.models.user_profile_update import UserProfileUpdate  # noqa: F401
-from src.app.models.user_registration import UserRegistration  # noqa: F401
-from src.app.models.v1_login_post200_response import V1LoginPost200Response  # noqa: F401
-from src.app.models.v1_login_post_request import V1LoginPostRequest  # noqa: F401
+from src.user_service_base.models.error_response import ErrorResponse  # noqa: F401
+from src.user_service_base.models.user_profile_response import UserProfileResponse  # noqa: F401
+from src.user_service_base.models.user_profile_update import UserProfileUpdate  # noqa: F401
+from src.user_service_base.models.user_registration import UserRegistration  # noqa: F401
+from src.user_service_base.models.v1_login_post200_response import V1LoginPost200Response  # noqa: F401
+from src.user_service_base.models.v1_login_post_request import V1LoginPostRequest  # noqa: F401
 
 
 def test_v1_create_user_post(client: TestClient):

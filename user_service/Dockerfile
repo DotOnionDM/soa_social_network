@@ -9,4 +9,4 @@ COPY ./src ./app
 
 EXPOSE 8081
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8081"]
+CMD ["uvicorn", "user_service_base.main:app", "--host", "0.0.0.0", "--port", "8081"]

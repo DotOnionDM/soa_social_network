@@ -4,8 +4,8 @@ from typing import Dict, List  # noqa: F401
 import importlib
 import pkgutil
 
-from app.apis.default_api_base import BaseDefaultApi
-import app
+from user_service_base.apis.default_api_base import BaseDefaultApi
+import user_service_impl
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -22,18 +22,18 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from app.models.extra_models import TokenModel  # noqa: F401
-from app.models.error_response import ErrorResponse
-from app.models.user_profile_response import UserProfileResponse
-from app.models.user_profile_update import UserProfileUpdate
-from app.models.user_registration import UserRegistration
-from app.models.v1_login_post200_response import V1LoginPost200Response
-from app.models.v1_login_post_request import V1LoginPostRequest
-from app.security_api import get_token_bearerAuth
+from user_service_base.models.extra_models import TokenModel  # noqa: F401
+from user_service_base.models.error_response import ErrorResponse
+from user_service_base.models.user_profile_response import UserProfileResponse
+from user_service_base.models.user_profile_update import UserProfileUpdate
+from user_service_base.models.user_registration import UserRegistration
+from user_service_base.models.v1_login_post200_response import V1LoginPost200Response
+from user_service_base.models.v1_login_post_request import V1LoginPostRequest
+from user_service_base.security_api import get_token_bearerAuth
 
 router = APIRouter()
 
-ns_pkg = app
+ns_pkg = user_service_impl
 for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     importlib.import_module(name)
 
