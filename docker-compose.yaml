@@ -14,7 +14,6 @@ services:
       POSTGRES_USER_USER_SERVICE: ${POSTGRES_USER_USER_SERVICE}
       POSTGRES_PASSWORD_USER_SERVICE: ${POSTGRES_PASSWORD_USER_SERVICE}
       POSTGRES_DB_USER_SERVICE: ${POSTGRES_DB_USER_SERVICE}
-      PGDATA: ${PGDATA_USER_SERVICE}
     depends_on:
       - postgres_db_users
     ports:
@@ -59,6 +58,8 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    networks:
+      - user_service-net
 
 networks:
   microservices-net:
