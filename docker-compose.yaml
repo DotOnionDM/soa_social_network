@@ -7,7 +7,6 @@ services:
       - user_service
     networks:
       - microservices-net
-      - user_service-net
 
   user_service:
     build: ./user_service
@@ -22,6 +21,7 @@ services:
       - "8081:8081"
     networks:
       - microservices-net
+      - user_service-net
   
   postgres_db_users:
     image: postgres:latest
