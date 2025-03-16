@@ -64,7 +64,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
   
-  /v1/getProfile:
+  /v1/profile:
     get:
       summary: Получение данных профиля
       description: Получения профиля авторизованного пользователя.

@@ -10,4 +10,4 @@ mkdir -p "$ROOT/endpoints"
 sudo rm -Rf ./openapi-generator-output
 docker run --rm -v "${PWD}":/app openapitools/openapi-generator-cli:latest-release generate  \
     -i /app/spec.yaml  -g python-fastapi   -o /app/openapi-generator-output \
-    --additional-properties=packageName=endpoints --additional-properties=fastapiImplementationPackage=endpoints
+    --additional-properties=packageName=app --additional-properties=fastapiImplementationPackage=app
