@@ -5,6 +5,8 @@
 #include <drogon/HttpResponse.h>
 #include <drogon/drogon.h>
 
+#include <set>
+
 class Server {
 public:
   Server() = delete;
@@ -21,6 +23,9 @@ private:
   drogon::HttpClientPtr user_service_;
   drogon::HttpClientPtr activities_service_;
   drogon::HttpClientPtr statistics_service_;
+
+  std::vector<std::string> headers_to_skip_ = {
+      "content-length", "transfer-encoding", "host", "connection"};
 
   void mainPageHandler(
       const drogon::HttpRequestPtr &req,

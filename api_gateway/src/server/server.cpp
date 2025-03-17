@@ -10,6 +10,10 @@ HttpResponsePtr Server::buildResponse(ReqResult result,
     clientResp->setBody(std::string(resp->getBody()));
 
     for (const auto &header : resp->headers()) {
+      if (std::find(headers_to_skip_.begin(), headers_to_skip_.end(),
+                    header.first) != headers_to_skip_.end()) {
+        continue;
+      }
       clientResp->addHeader(header.first, header.second);
     }
 
@@ -34,10 +38,20 @@ void Server::userProxyHandler(
     const std::string &path) {
   auto forwardedRequest = HttpRequest::newHttpRequest();
   forwardedRequest->setMethod(req->getMethod());
-  forwardedRequest->setPath("/v1/" + path);
+
+  std::string fullPath = "/v1/" + path;
+  if (!req->query().empty()) {
+    fullPath += "?" + req->query();
+  }
+  forwardedRequest->setPath(fullPath);
+
   forwardedRequest->setBody(std::string(req->getBody()));
 
   for (const auto &header : req->headers()) {
+    if (std::find(headers_to_skip_.begin(), headers_to_skip_.end(),
+                  header.first) != headers_to_skip_.end()) {
+      continue;
+    }
     forwardedRequest->addHeader(header.first, header.second);
   }
 
