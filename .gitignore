@@ -1,0 +1,6 @@
+*.env
+*build*
+*.vscode*
+*venv*
+*drogon*
+*__pycache__*

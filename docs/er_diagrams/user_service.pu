@@ -1,10 +1,11 @@
 @startuml "Users Service ER Diagram"
 entity "User" as U {
   *user_id : int
-  username : string
+  login : string
   password_hash : string
   email : string
   created_at : datetime
+  updated_at : datetime
   role_id : int
 }
 
