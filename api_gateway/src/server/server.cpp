@@ -19,7 +19,7 @@ HttpResponsePtr Server::buildResponse(ReqResult result,
 
   } else {
     clientResp->setStatusCode(k500InternalServerError);
-    clientResp->setBody("Error forwarding request");
+    clientResp->setBody("Error forwarding request to user service");
   }
   return clientResp;
 }

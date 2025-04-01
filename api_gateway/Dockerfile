@@ -37,4 +37,4 @@ RUN mkdir -p build && cd build && \
 
 EXPOSE 8080
 
-CMD [ "./build/app", "http://user_service:8081" ]
+CMD [ "./build/app", "http://user_service:8081", "http://activities_service:8081" ]
